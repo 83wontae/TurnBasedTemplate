@@ -65,6 +65,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pathfinding")
 	FSearchTileData SearchTileData;
 
+	// 이동 가능 여부
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
 	bool bIsWalkable;
+
+	// 지형 비용 (예: 장애물, 물 등)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
+	uint8 TerrainCost;
 };

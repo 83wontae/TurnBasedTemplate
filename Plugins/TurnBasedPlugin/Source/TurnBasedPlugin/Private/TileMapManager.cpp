@@ -189,7 +189,8 @@ TArray<ATileBase*> ATileMapManager::FindPath(FVector StartLocation, FVector EndL
             if (ClosedList.Contains(Neighbor))
                 continue; // 이미 검사한 타일은 건너뛰기
 
-            int32 TentativeGCost = FVector::DistSquared(CurrentTile->GetActorLocation(), Neighbor->GetActorLocation());
+			int32 TerrainCost = Neighbor->TerrainCost;// 지형 비용
+            int32 TentativeGCost = FVector::DistSquared(CurrentTile->GetActorLocation(), Neighbor->GetActorLocation()) + TerrainCost;
 
             // GCost가 더 작거나 OpenList에 없는 경우
             if (TentativeGCost < Neighbor->SearchTileData.GCost || !OpenList.Contains(Neighbor))
