@@ -17,22 +17,22 @@ struct FSearchTileData
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
 	int32 Y;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
-	bool bIsWalkable;
-
+	// 시작 타일에서 현재 타일까지의 이동 비용
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
 	int32 GCost;
 
+	// 현재 타일에서 목표 타일까지의 추정된 이동 비용
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
 	int32 HCost;
 
+	// GCost와 HCost의 합
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
 	int32 FCost;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
 	ATileBase* Parent;
 
-	FSearchTileData() : X(0), Y(0), bIsWalkable(true), GCost(0), HCost(0), FCost(0), Parent(nullptr) {}
+	FSearchTileData() : X(0), Y(0), GCost(0), HCost(0), FCost(0), Parent(nullptr) {}
 };
 
 
@@ -64,4 +64,7 @@ public:
 	// A* 경로 탐색을 위한 데이터
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Pathfinding")
 	FSearchTileData SearchTileData;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pathfinding")
+	bool bIsWalkable;
 };

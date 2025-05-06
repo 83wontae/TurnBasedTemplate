@@ -63,7 +63,6 @@ void ATileMapManager::GenerateTileMap(int32 MapWidth, int32 MapHeight)
             FSearchTileData SearchTileData;
             SearchTileData.X = X;
             SearchTileData.Y = Y;
-            SearchTileData.bIsWalkable = true; // 기본값 설정
             SearchTileData.GCost = 0;
             SearchTileData.HCost = 0;
             SearchTileData.FCost = 0;
@@ -71,6 +70,7 @@ void ATileMapManager::GenerateTileMap(int32 MapWidth, int32 MapHeight)
 
             NewTile->SearchTileData = SearchTileData;
 			NewTile->TileMapManager = this;  // 타일 매니저 설정
+            NewTile->bIsWalkable = true; // 기본값 설정
 
             FString TileName = FString::Printf(TEXT("Tile%d%d"), X, Y);  // 타일 이름 설정
             NewTile->SetActorLabel(TileName);
@@ -242,7 +242,7 @@ TArray<ATileBase*> ATileMapManager::GetNeighbors(ATileBase* Tile)
         if (NewIndex >= 0 && NewIndex < (m_MapWidth * m_MapHeight)) // 유효한 인덱스 확인
         {
             ATileBase* Neighbor = TileMap[NewIndex];
-            if (Neighbor && Neighbor->SearchTileData.bIsWalkable) // 이동 가능한 타일만 추가
+            if (Neighbor && Neighbor->bIsWalkable) // 이동 가능한 타일만 추가
             {
                 Neighbors.Add(Neighbor);
             }
