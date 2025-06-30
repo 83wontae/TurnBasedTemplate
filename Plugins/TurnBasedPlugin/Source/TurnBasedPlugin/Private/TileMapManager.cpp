@@ -173,6 +173,9 @@ TArray<ATileBase*> ATileMapManager::FindPath(FVector StartLocation, FVector EndL
                 if (Tile)
                 {
                     Tile->SearchTileData.Parent = nullptr;  // 부모를 초기화
+                    Tile->SearchTileData.GCost = 0;
+                    Tile->SearchTileData.HCost = 0;
+                    Tile->SearchTileData.FCost = 0;
                 }
             }
 
